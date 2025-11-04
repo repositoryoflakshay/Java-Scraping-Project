@@ -51,16 +51,16 @@ public class Main {
                     page.waitForSelector(selector, new Page.WaitForSelectorOptions().setTimeout(20000));
                     links = page.querySelectorAll(selector);
                     if (!links.isEmpty()) {
-                        System.out.println("✅ Found elements using selector: " + selector);
+                        System.out.println("Found elements using selector: " + selector);
                         break;
                     }
                 } catch (PlaywrightException e) {
-                    System.out.println("⚠️ Selector failed: " + selector);
+                    System.out.println("Selector failed: " + selector);
                 }
             }
 
             if (links.isEmpty()) {
-                System.out.println("❌ No senator links found. Try running with headless(false).");
+                System.out.println("No senator links found. Try running with headless(false).");
                 browser.close();
                 return;
             }
@@ -92,7 +92,7 @@ public class Main {
         try (FileWriter writer = new FileWriter("senators.json")) {
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
             gson.toJson(senators, writer);
-            System.out.println("✅ Data saved to senators.json successfully!");
+            System.out.println("Data saved to senators.json successfully!");
         } catch (IOException e) {
             e.printStackTrace();
         }
