@@ -1,0 +1,44 @@
+
+## Overview
+This project is a **Java-based web scraper** that extracts data about Alaska State Senators from the official [AKLeg.gov Senate Page](https://akleg.gov/senate.php).  
+It demonstrates how to use **Playwright for Java** to perform automated browsing, DOM extraction, and JSON export.
+
+---
+
+## Features
+- Uses **Microsoft Playwright** to load and parse web content dynamically.
+- Extracts details such as:
+  - Senator Name  
+  - Title  
+  - Party  
+  - Contact URL
+- Exports all scraped data into a **formatted JSON file** (`senators.json`).
+- Implements **GSON** for structured data serialization.
+
+---
+
+## Tech Stack
+| Tool / Library | Purpose |
+|----------------|----------|
+| **Java 17** | Core programming language |
+| **Playwright (v1.49.0)** | Web automation & scraping |
+| **GSON (v2.11.0)** | JSON serialization |
+| **Maven** | Project build management |
+
+---
+
+## Project Structure
+senate-scraper/
+│
+├── pom.xml # Maven configuration file
+├── senators.json # Scraped output data
+├── src/main/java/com/scraper/
+│ ├── Main.java # Entry point of the program
+│ └── Senator.java # Model class for storing senator info
+└── target/ # Compiled files (auto-generated)
+
+Lakshay Kanojia
+B.Tech (CST)
+
+Completed and successfully uploaded to GitHub
+Date: November 4, 2025
