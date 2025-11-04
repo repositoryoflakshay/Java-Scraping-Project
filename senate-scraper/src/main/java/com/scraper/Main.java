@@ -32,27 +32,18 @@ public class Main {
 
         try (Playwright playwright = Playwright.create()) {
             Browser browser = playwright.chromium().launch(
-                    // 🔍 Try headless(false) if site blocks bots
                     new BrowserType.LaunchOptions().setHeadless(false)
             );
 
             Page page = browser.newPage();
 
-            // Navigate to page and wait for full load
             page.navigate("https://akleg.gov/senate.php",
                     new Page.NavigateOptions().setWaitUntil(WaitUntilState.NETWORKIDLE));
 
-            // 🔁 Retry logic: Use a more specific selector
-            //
-            //  ******************* THIS IS THE CORRECTED SECTION *******************
-            //
             String[] selectors = {
-                    "#leglist li > a:first-child",  // Target only the first 'a' tag in each 'li'
-                    "ul.leglist li > a:first-child" // Same specific selector for the class
+                    "#leglist li > a:first-child",  
+                    "ul.leglist li > a:first-child" 
             };
-            //
-            //  *******************************************************************
-            //
 
             List<ElementHandle> links = new ArrayList<>();
             for (String selector : selectors) {
@@ -74,7 +65,6 @@ public class Main {
                 return;
             }
 
-            // Extract senator data
             for (ElementHandle link : links) {
                 String name = link.innerText().trim();
                 String title = "Senator";
@@ -99,7 +89,6 @@ public class Main {
             browser.close();
         }
 
-        // Write output to JSON
         try (FileWriter writer = new FileWriter("senators.json")) {
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
             gson.toJson(senators, writer);
